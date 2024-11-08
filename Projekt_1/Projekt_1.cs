@@ -1,210 +1,162 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
-using Projekt1_Kumszczynski71523;
 
-
-/*
- * na koncu czas i autor
- */
-
-namespace Projekt1_Kumszczynski71523
+namespace Projekt_1_Kumszczynski_71523
 {
-    internal class TUTAJ_NAZWA_TWOJEGO_PROGRAMU
+    internal class Program
     {
-        public static void Main(string[] args)
+        static void Main(string[] args)
         {
-            //var tmKI = new tmKalkulatorIndywidualny();
-            //Console.WriteLine(tmKI.tmSGeometryczna());
+            // deklaracja zmiennej identyfikującej naciśnięty klawisz
+            ConsoleKeyInfo WybranaFunkcjonalność;
 
-            //Deklaracje zmiennych
-            ConsoleKeyInfo wybranaFunkcjonalnosc;
+            // wypisanie metryki programu
+            Console.WriteLine("\n\n\t\t\t\tPROGRAM KALKULATOR umożliwia obliczanie wartości wybranych wielkości matematycznych");
 
-
-
-            //wypisanie etryki projektu
-            Console.WriteLine("\n\n\n\t\t\tProjekt Nr 1 jest kalkulatorem umozliwiajacym " +
-                "oblicznie wybranych wielkosci matematycznych");
-
-            //zapisanie wielokrotnego powtarzania wyboru kalkulatora
+            // zapisanie wielokrotnego powtarzania wywołania Kalkulatorów
             do
             {
-                //wypisanie tytulu karty menu
-                Console.WriteLine("\n\n\n\t\tMENU KALKULATORA");
-                //wypisanie pozycji w karcie menu
-                Console.WriteLine("\n\n\t\tA: Kalkulaor Laboratoryjny");
-                Console.WriteLine("\n\n\t\tB: Kalkulaor Indywidualny");
-                Console.WriteLine("\n\n\t\tX: Zakoncz");
+                // wypisanie MENU części głównej programu
+                Console.WriteLine("\n\n\t\tMENU części głównej programu");
 
-                //podpowiedz dla uzytkownika
-                Console.Write("\n\n\t\tNacisniecie dowzwolonego klawisza (A, B lub X)" +
-                                    " wybierz wymagana funkcjonalnosc");
-                //wczytanie kodu nacisnietego klawisza
-                wybranaFunkcjonalnosc = Console.ReadKey();
+                // wypisanie kolejnych pozycji MENU programu
+                Console.WriteLine("\n\t\tA. Kalkulator Labolatoryjny");
+                Console.WriteLine("\n\t\tB. Kalkulator Indywidualny");
+                Console.WriteLine("\n\t\tX. Zakończenie (wyjście z) programu");
 
-                //rozpoznanie kodu nacisnietego klawisza
+                // wypisanie podpowiedzi dla użytkownika
+                Console.Write("\n\n\t\tNaciśnij jeden z dozwolonych klawiszy (A, B, X) dla wybrania wymaganej funkcjonalności: ");
 
-                if (wybranaFunkcjonalnosc.Key == ConsoleKey.A)
+                // wczytanie kodu naciśniętego klawisza (wybranej funkcjonalności)
+                WybranaFunkcjonalność = Console.ReadKey();
+
+                // rozpoznanie wybranej funkcjonalności
+                if (WybranaFunkcjonalność.Key == ConsoleKey.A)
                 {
-                    //wywolanie metody ktora obsluguje ten kalkulator
-                    KalkulatorLaboraturyjny();
-
+                    // został wybrany Kalkulator Labolatoryjny, który teraz musimy wywołać
+                    KalkulatorLabolatoryjny();
                 }
-
-                else if (wybranaFunkcjonalnosc.Key == ConsoleKey.B)
+                else if (WybranaFunkcjonalność.Key == ConsoleKey.B)
                 {
+                    // został wybrany Kalkulator Indywidualny, który teraz musimy wywołać
                     KalkulatorIndywidualny();
                 }
+                else if (WybranaFunkcjonalność.Key != ConsoleKey.X)
+                {
+                    // jest błąd, to go sygnalizujemy
+                    Console.WriteLine("\n\n\t\tERROR: nacisnąłeś niedozwolony znak!!!");
 
-                else if (wybranaFunkcjonalnosc.Key != ConsoleKey.X)
-                {//jest blad to go sygnalizujemy
-                    Console.WriteLine("\n\n\t\tERROR: nacisnales niedozwolony klawisz");
-                    //chwilowe zatrzymanie programu
-                    Console.WriteLine("\n\n\tDla zakonczenia dzialania programu nacisnij dowolny klawisz . . . ");
-                    Console.ReadKey(true);
+                    // chwilowe zatrzymanie programu
+                    Console.WriteLine("\n\n\t\tNaciśnij dowolny klawisz dla kontynuacji . . . ");
+
+                    // oczekiwanie na naciśnięcie dowolnego klawisza
+                    Console.ReadKey();
                 }
-                //wyczyszczenie okna konsoli
+
+                // wyczyszczenie okna Konsoli
                 Console.Clear();
 
+            } while (WybranaFunkcjonalność.Key != ConsoleKey.X);
 
-            } while (wybranaFunkcjonalnosc.Key != ConsoleKey.X);
-            //zakonczenie programu
-            Console.WriteLine("\n\n\n\t\tAutor programu: Tymon Mickiewicz, numer albumu: 71500");
+            // wypisanie autorstwa programu
+            Console.WriteLine("\n\n\n\t\tAutor programu: Kamil Kumszczyński, 71523");
 
-            //wypisanie daty i godziny wykonania programu
-            Console.WriteLine("\n\t\tProgram zostal wykonany: {0}", DateTime.Now);
+            // wypisanie daty uruchomienia (testowania) programu
+            Console.WriteLine("\n\t\tDzisiejsza data: {0}", DateTime.Now);
 
-            //chwilowe zatrzymanie dzialania programu
-            Console.WriteLine("\n\n\tDla zakonczenia dzialania programu nacisnij dowolny klawisz . . . ");
+            // chwilowe zatrzymanie programu
+            Console.Write("\n\n\n\t\tNaciśnij dowolny klawisz dla kontynuacji . . . ");
 
-            //oczekiwanie na naciesniecie klawisza
-            Console.ReadKey(true);
-        }
-        #region deklaracja matod kalkulatorow
-        static void KalkulatorLaboraturyjny()
+            // oczekiwanie na naciśnięcie dowolnego klawisza
+            Console.ReadKey();
+        } // od Main ( . . . )
+
+        #region Deklaracje metod z Kalkulatorami
+        static void KalkulatorLabolatoryjny()
         {
-            //wyczyszczenie okna konsoli
+            // deklaracja zmiennej identyfikującej naciśnięty klawisz
+            ConsoleKeyInfo WybranaFunkcjonalność;
+
+            // wyczyszczenie okna konsoli
             Console.Clear();
 
-            //wypisanie potwierdzenia o wybraniu kalkulatora
-            Console.WriteLine("\n\n\t\tKalkulator Laboratoryjny");
-            //Console.WriteLine("\n\n\n\n\tPrzepraszam ale jestem w trakcie realizacji projektu");
-
-            ConsoleKeyInfo wybranaFunkcjonalnosc;
-
-            //wypisanie etryki projektu
-            Console.WriteLine("\n\n\n\t\t\tProjekt Nr 1 jest kalkulatorem umozliwiajacym " +
-                "oblicznie wybranych wielkosci matematycznych");
-
-            //zapisanie wielokrotnego powtarzania wyboru kalkulatora
+            // zapisanie wielokrotnego powtarzania obliczeń wielkości matematycznych oferowanych przez Kalkulator Labolatoryjny
             do
             {
-                //wypisanie tytulu karty menu
-                Console.WriteLine("\n\n\n\t\tMENU KALKULATORA LABORATURYJNEGO");
-                //wypisanie pozycji w karcie menu
-                Console.WriteLine("\n\t\tA: Obliczanie sredniej arytmetycznej wyrazow ciagu liczbowego");
-                Console.WriteLine("\n\t\tB: Obliczanie wartosci wielomianu n-tego stopnia");
-                Console.WriteLine("\n\t\tC: Konwersja znakowego zapisu loczby na jej wartosc");
-                Console.WriteLine("\n\t\tD: Obliczanie wartosci symbolu newtona");
-                Console.WriteLine("\n\n\t\tX: Wyjscie z kalkulatora");
+                // wypisanie metryki Kalkulatora Labolatoryjnego
+                Console.WriteLine("\n\n\n\t\tMENU Kalkulatora Labolatoryjnego");
 
-                //podpowiedz dla uzytkownika
-                Console.Write("\n\n\t\tNacisniecie dowzwolonego klawisza (A, B, C, D lub X)" +
-                                    " wybierz wymagana funkcjonalnosc");
-                //wczytanie kodu nacisnietego klawisza
-                wybranaFunkcjonalnosc = Console.ReadKey();
+                // wypisanie kolejnych pozycji MENU Kalkulatora Labolatoryjnego
+                Console.WriteLine("\n\n\t\tA. Obliczenie średniej arytmetycznej wyrazów ciągu liczbowego");
+                Console.WriteLine("\n\n\t\tB. Obliczenie wartości wielomianu n-tego stopnia");
+                Console.WriteLine("\n\n\t\tC. Konwersja znakowego zapisu liczby na wartość");
+                Console.WriteLine("\n\n\t\tD. Obliczenie wartości symbolu Newtona");
+                Console.WriteLine("\n\n\t\tX. Wyjście z Kalkulatora Labolatoryjnego");
 
+                // wypisanie podpowiedzi dla użytkownika programu
+                Console.WriteLine("\n\n\t\tNaciśnij dowolny klawisz (A, B, C, D, X) dla wybrania jednej z oferowanych funkcjonalności: ");
 
-                //wyczyszczenie okna konsoli
-                Console.Clear();
-                //rozpoznanie kodu nacisnietego klawisza
+                // wczytanie kodu naciśniętego klawisza
+                WybranaFunkcjonalność = Console.ReadKey();
 
-                switch (wybranaFunkcjonalnosc.Key)
+                // rozpoznanie wybranej funkcjonalności
+                switch (WybranaFunkcjonalność.Key)
                 {
-
-                    case ConsoleKey.A:
-                        //wypisanie potwierdzenia wybranej funkcjonalnosci
-                        Console.WriteLine("\n\n\t\tWybrana zostala funkcjonalnosc: " +
-                            "A: Obliczanie sredniej arytmetycznej wyrazow ciagu liczbowego");
-
-                        //wypisanie przeproszenia
-                        Console.WriteLine("\n\n\n\tPrzepraszam ale jestem w trakcie implementacji");
-
+                    case ConsoleKey.A: // potwierdzenie wybranej funkcjonalności
+                        Console.WriteLine("\n\n\t\tWybrałeś funkcjonalność A. Obliczenie średniej arytmetycznej wyrazów ciągu liczbowego");
+                        Console.WriteLine("\n\n\t\tPRZEPRASZAM, ale jestem w trakcie implementacji");
                         break;
 
-                    case ConsoleKey.B:
-                        //wypisanie potwierdzenia wybranej funkcjonalnosci
-                        Console.WriteLine("\n\n\t\tWybrana zostala funkcjonalnosc: " +
-                            "B: Obliczanie wartosci wielomianu n-tego stopnia");
-                        //wypisanie przeproszenia
-                        Console.WriteLine("\n\n\n\tPrzepraszam ale jestem w trakcie implementacji");
-
+                    case ConsoleKey.B: // potwierdzenie wybranej funkcjonalności
+                        Console.WriteLine("\n\n\t\tWybrałeś funkcjonalność B. Obliczenie wartości wielomianu n-tego stopnia");
+                        Console.WriteLine("\n\n\t\tPRZEPRASZAM, ale jestem w trakcie implementacji");
                         break;
 
-                    case ConsoleKey.C:
-                        //wypisanie potwierdzenia wybranej funkcjonalnosci
-                        Console.WriteLine("\n\n\t\tWybrana zostala funkcjonalnosc: " +
-                            "C: Konwersja znakowego zapisu liczby na jej wartosc");
-                        //wypisanie przeproszenia
-                        Console.WriteLine("\n\n\n\tPrzepraszam ale jestem w trakcie implementacji");
-
-
+                    case ConsoleKey.C: // potwierdzenie wybranej funkcjonalności
+                        Console.WriteLine("\n\n\t\tWybrałeś funkcjonalność C. Konwersja znakowego zapisu liczby na wartość");
+                        Console.WriteLine("\n\n\t\tPRZEPRASZAM, ale jestem w trakcie implementacji");
                         break;
 
-                    case ConsoleKey.D:
-                        //wypisanie potwierdzenia wybranej funkcjonalnosci
-                        Console.WriteLine("\n\n\t\tWybrana zostala funkcjonalnosc: " +
-                            "A: Obliczanie wartosci symbolu newtona");
-                        //wypisanie przeproszenia
-                        Console.WriteLine("\n\n\n\tPrzepraszam ale jestem w trakcie implementacji");
-
+                    case ConsoleKey.D: // potwierdzenie wybranej funkcjonalności
+                        Console.WriteLine("\n\n\t\tWybrałeś funkcjonalność D. Obliczenie wartości symbolu Newtona");
+                        Console.WriteLine("\n\n\t\tPRZEPRASZAM, ale jestem w trakcie implementacji");
                         break;
 
-                    case ConsoleKey.X:
-                        //wypisanie potwierdzenia wybranej funkcjonalnosci
-                        Console.WriteLine("\n\n\t\tWybrana zostala funkcjonalnosc: " +
-                            "X: Wyjscie z kalkulatora");
-                        //wypisanie przeproszenia
-                        Console.WriteLine("\n\n\n\tPrzepraszam ale jestem w trakcie implementacji");
-
+                    case ConsoleKey.X: // potwierdzenie wybranej funkcjonalności
+                        Console.WriteLine("\n\n\t\tWybrałeś funkcjonalność X. Wyjście z Kalkulatora Labolatoryjnego");
                         break;
 
                     default:
-                        Console.WriteLine("\n\n\n\tERROR nacisnales niedozwolony przycisk");
+                        Console.WriteLine("\n\n\t\tERROR: Nacisnąłeś niedozwolony znak");
                         break;
-
                 }
-                //chwilowe zatrzymanie programu
-                Console.WriteLine("\n\n\tDla zakonczenia dzialania programu nacisnij dowolny klawisz . . . ");
 
-                //oczekiwanie na naciesniecie klawisza
-                Console.ReadKey(true);
+                // chwilowe zatrzymanie programu
+                Console.Write("\n\n\n\t\tNaciśnij dowolny klawisz dla kontynuacji . . . ");
 
-                //wyczyszczenie okna konsoli
+                // oczekiwanie na naciśnięcie dowolnego klawisza
+                Console.ReadKey();
+
+                // wyczyszczenie okna konsoli
                 Console.Clear();
 
-
-            } while (wybranaFunkcjonalnosc.Key != ConsoleKey.X);
-
-            //chwilowe zatrzymanie dzialania programu
-            Console.WriteLine("\n\n\tDla kontynuacji dzialania programu nacisnij dowolny klawisz . . . ");
-
-            //oczekiwanie na naciesniecie klawisza
-            Console.ReadKey(true);
+            } while (WybranaFunkcjonalność.Key != ConsoleKey.X);
         }
 
         static void KalkulatorIndywidualny()
         {
-            /*
-             * TUTAJ OGOLEM BYLO COS NA WZOR TEGO NA GORZE ALE NW JA MAM JAKIES ZJEBANE U SIEBIE TEZ MUSZE ZMIENIC ALE TERAZ MI SIE NIE CHCE, XD
-             * */
-            return;
-        }
+            // wypisanie komunikatu
+            Console.WriteLine("\n\n\n\t\tPRZEPRASZAM, ale jestem w trakcie implementacji");
 
+            // chwilowe zatrzymanie programu
+            Console.Write("\n\n\n\t\tNaciśnij dowolny klawisz dla kontynuacji . . . ");
+
+            // oczekiwanie na naciśnięcie dowolnego klawisza
+            Console.ReadKey();
+        }
         #endregion
     }
 }
-
